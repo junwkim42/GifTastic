@@ -29,22 +29,18 @@ $(document).on("click", "button" ,function(){
     method: "GET"
   }).then(function(response) {  
     console.log(response);
-    //console.log(response.data[3].images["480w_still"].url);
-    // add loop
-    // for each cell, add image with following attributes
-    // $("<img>")
-    // data-still (link to still image), data-animate, data-state, class
-    // data-state is still by default. src has to be data-still by default
-    // class = gif
- 
+
     for(var i = 0; i < 10; i++){
+      var newRating = $("<p>");
       var newImg = $("<img>");
       newImg.attr("data-state", "still");
       newImg.attr("src", response.data[i].images["480w_still"].url);
       newImg.attr("data-still", response.data[i].images["480w_still"].url);
       newImg.attr("data-animate", response.data[i].images["downsized_medium"].url);
       newImg.addClass("gif");
+      newRating.text("Rating: " + response.data[i].rating);
       $("#" + i).empty();
+      $("#" + i).append(newRating);
       $("#" + i).append(newImg);
     }
 
@@ -54,7 +50,6 @@ $(document).on("click", "button" ,function(){
 
 $(document).on("click", ".gif" ,function(){
   var state = $(this).attr("data-state");
-  console.log("i was here!");
   if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
