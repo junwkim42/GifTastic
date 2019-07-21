@@ -37,6 +37,7 @@ $(document).on("click", "button" ,function(){
       newImg.attr("src", response.data[i].images["480w_still"].url);
       newImg.attr("data-still", response.data[i].images["480w_still"].url);
       newImg.attr("data-animate", response.data[i].images["downsized_medium"].url);
+      newImg.attr("style", "width:150px;height:150px;")
       newImg.addClass("gif");
       newRating.text("Rating: " + response.data[i].rating);
       $("#" + i).empty();
